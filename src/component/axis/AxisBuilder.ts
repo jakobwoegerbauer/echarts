@@ -51,8 +51,8 @@ type AxisEventData = {
     dataIndex?: number
     tickIndex?: number
 } & {
-    [key in AxisIndexKey]?: number
-};
+        [key in AxisIndexKey]?: number
+    };
 
 type AxisLabelText = graphic.Text & {
     __fullText: string
@@ -384,8 +384,8 @@ const builders: Record<'axisLine' | 'axisTickLabel' | 'axisName', AxisElementsBu
             nameLocation === 'start'
                 ? extent[0] - gapSignal * gap
                 : nameLocation === 'end'
-                ? extent[1] + gapSignal * gap
-                : (extent[0] + extent[1]) / 2, // 'middle'
+                    ? extent[1] + gapSignal * gap
+                    : (extent[0] + extent[1]) / 2, // 'middle'
             // Reuse labelOffset.
             isNameLocationCenter(nameLocation) ? opt.labelOffset + nameDirection * gap : 0
         ];
@@ -425,7 +425,7 @@ const builders: Record<'axisLine' | 'axisTickLabel' | 'axisName', AxisElementsBu
         const truncateOpt = axisModel.get('nameTruncate', true) || {};
         const ellipsis = truncateOpt.ellipsis;
         const maxWidth = retrieve(
-            opt.nameTruncateMaxWidth, truncateOpt.maxWidth, axisNameAvailableWidth
+            opt.nameTruncateMaxWidth, truncateOpt.maxWidth, axisNameAvailableWidth, textStyleModel.get('width') as number
         );
 
         const textEl = new graphic.Text({
@@ -436,7 +436,6 @@ const builders: Record<'axisLine' | 'axisTickLabel' | 'axisName', AxisElementsBu
             style: createTextStyle(textStyleModel, {
                 text: name,
                 font: textFont,
-                overflow: 'truncate',
                 width: maxWidth,
                 ellipsis,
                 fill: textStyleModel.getTextColor()
@@ -827,8 +826,8 @@ function buildAxisLabel(
                         axis.type === 'category'
                             ? rawLabel
                             : axis.type === 'value'
-                            ? tickValue + ''
-                            : tickValue,
+                                ? tickValue + ''
+                                : tickValue,
                         index
                     )
                     : textColor as string
