@@ -51,8 +51,8 @@ type AxisEventData = {
     dataIndex?: number
     tickIndex?: number
 } & {
-        [key in AxisIndexKey]?: number
-    };
+    [key in AxisIndexKey]?: number
+};
 
 type AxisLabelText = graphic.Text & {
     __fullText: string
@@ -384,8 +384,8 @@ const builders: Record<'axisLine' | 'axisTickLabel' | 'axisName', AxisElementsBu
             nameLocation === 'start'
                 ? extent[0] - gapSignal * gap
                 : nameLocation === 'end'
-                    ? extent[1] + gapSignal * gap
-                    : (extent[0] + extent[1]) / 2, // 'middle'
+                ? extent[1] + gapSignal * gap
+                : (extent[0] + extent[1]) / 2, // 'middle'
             // Reuse labelOffset.
             isNameLocationCenter(nameLocation) ? opt.labelOffset + nameDirection * gap : 0
         ];
@@ -826,8 +826,8 @@ function buildAxisLabel(
                         axis.type === 'category'
                             ? rawLabel
                             : axis.type === 'value'
-                                ? tickValue + ''
-                                : tickValue,
+                            ? tickValue + ''
+                            : tickValue,
                         index
                     )
                     : textColor as string
