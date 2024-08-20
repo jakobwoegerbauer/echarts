@@ -425,7 +425,10 @@ const builders: Record<'axisLine' | 'axisTickLabel' | 'axisName', AxisElementsBu
         const truncateOpt = axisModel.get('nameTruncate', true) || {};
         const ellipsis = truncateOpt.ellipsis;
         const maxWidth = retrieve(
-            opt.nameTruncateMaxWidth, truncateOpt.maxWidth, axisNameAvailableWidth, textStyleModel.get('width') as number
+            opt.nameTruncateMaxWidth, 
+            truncateOpt.maxWidth, 
+            axisNameAvailableWidth, 
+            textStyleModel.get('width') as number
         );
 
         const textEl = new graphic.Text({
